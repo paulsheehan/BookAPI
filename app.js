@@ -1,5 +1,6 @@
 var express = require('express'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser');
 
 var mongoUrl = require('./private/mongoUrl'); 
 var db = mongoose.connect(mongoUrl, {useNewUrlParser: true});
@@ -13,7 +14,15 @@ var port = process.env.PORT || 3000;
 
 var bookRouter = express.Router();
 
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+
 bookRouter.route('/Books')
+    .post(function(req, res) {
+        var book = new Book(req.body);
+        book.save();
+        res.status(201).send(book);
+    })
     .get(function(req, res) {
 
         var query = {};
