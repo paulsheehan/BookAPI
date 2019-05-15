@@ -1,0 +1,14 @@
+{
+  "name": "bookapi",
+  "version": "1.0.0",
+  "description": "REST service for book api",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
